@@ -1,0 +1,129 @@
+SQL NOTES
+
+1. INTRODUCTION TO SQL
+- SQL (Structured Query Language) is used to manage and manipulate relational databases.
+- Common SQL databases: MySQL, PostgreSQL, SQL Server, SQLite, Oracle.
+
+2. BASIC SQL COMMANDS
+- SELECT: Retrieves data from tables.
+- INSERT: Adds new records to tables.
+- UPDATE: Modifies existing records.
+- DELETE: Removes records.
+- CREATE: Creates new tables or databases.
+- DROP: Deletes tables or databases.
+- ALTER: Modifies table structure.
+
+3. SELECT STATEMENT
+SELECT column1, column2 FROM table_name WHERE condition;
+- Example:
+    SELECT name, age FROM employees WHERE age > 30;
+
+4. INSERT STATEMENT
+INSERT INTO table_name (column1, column2) VALUES (value1, value2);
+- Example:
+    INSERT INTO employees (name, age) VALUES ('John', 28);
+
+5. UPDATE STATEMENT
+UPDATE table_name SET column1 = value1 WHERE condition;
+- Example:
+    UPDATE employees SET age = 29 WHERE name = 'John';
+
+6. DELETE STATEMENT
+DELETE FROM table_name WHERE condition;
+- Example:
+    DELETE FROM employees WHERE age < 25;
+
+7. CREATE TABLE
+CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+    column2 datatype,
+    ...
+);
+- Example:
+    CREATE TABLE employees (
+        id INT PRIMARY KEY,
+        name VARCHAR(50),
+        age INT
+    );
+
+8. ALTER TABLE
+- Add column:
+    ALTER TABLE employees ADD email VARCHAR(100);
+- Drop column:
+    ALTER TABLE employees DROP COLUMN email;
+- Modify column:
+    ALTER TABLE employees MODIFY age SMALLINT;
+
+9. DROP TABLE
+DROP TABLE table_name;
+
+10. SQL DATA TYPES
+- INT, SMALLINT, BIGINT
+- VARCHAR(n), CHAR(n), TEXT
+- DATE, TIME, DATETIME, TIMESTAMP
+- FLOAT, DOUBLE, DECIMAL
+
+11. CONSTRAINTS
+- PRIMARY KEY: Uniquely identifies each row.
+- FOREIGN KEY: References primary key in another table.
+- UNIQUE: Ensures all values are unique.
+- NOT NULL: Disallows NULL values.
+- CHECK: Restricts values in a column.
+- DEFAULT: Sets default value.
+
+12. JOINS
+- INNER JOIN: Returns rows with matching values.
+- LEFT JOIN: All rows from left table + matched rows.
+- RIGHT JOIN: All rows from right table + matched rows.
+- FULL JOIN: All rows when there is a match in either table.
+
+Example:
+SELECT a.name, b.salary
+FROM employees a
+INNER JOIN payroll b ON a.id = b.emp_id;
+
+13. AGGREGATE FUNCTIONS
+- COUNT(), SUM(), AVG(), MIN(), MAX()
+Example:
+SELECT COUNT(*) FROM employees WHERE age > 30;
+
+14. GROUP BY & HAVING
+- GROUP BY groups rows sharing a property.
+- HAVING filters groups.
+Example:
+SELECT department, COUNT(*) FROM employees GROUP BY department HAVING COUNT(*) > 5;
+
+15. ORDER BY
+SELECT * FROM employees ORDER BY age DESC;
+
+16. SUBQUERIES
+SELECT name FROM employees WHERE id IN (SELECT emp_id FROM payroll WHERE salary > 50000);
+
+17. INDEXES
+CREATE INDEX idx_name ON employees(name);
+
+18. VIEWS
+CREATE VIEW senior_employees AS SELECT * FROM employees WHERE age > 40;
+
+19. TRANSACTIONS
+BEGIN;
+UPDATE employees SET age = age + 1;
+COMMIT;
+ROLLBACK;
+
+20. COMMON CLAUSES
+- DISTINCT: Removes duplicates.
+- LIMIT: Restricts number of rows (MySQL, PostgreSQL).
+- TOP: Restricts number of rows (SQL Server).
+
+21. SQL BEST PRACTICES
+- Use proper data types.
+- Normalize tables.
+- Use indexes for performance.
+- Backup data regularly.
+- Use parameterized queries to prevent SQL injection.
+
+22. RESOURCES
+- Official documentation (MySQL, PostgreSQL, SQL Server, Oracle)
+- https://www.w3schools.com/sql/
+- https://www.sqltutorial.org/
